@@ -1,0 +1,306 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: -webkit-linear-gradient(top left, #61d2d0 0vh, #2fe29e 100vh);
+    background: -moz-linear-gradient(top left, #61d2d0 0vh, #2fe29e 100vh);
+    background: -o-linear-gradient(top left, #61d2d0 0vh, #2fe29e 100vh);
+    background: linear-gradient(top left, #61d2d0 0vh, #2fe29e 100vh);
+    font-family: "Muli", sans-serif;
+    /*color: white;*/
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+    min-height: 100vh;
+}
+
+
+
+
+#title {
+    color: white;
+    text-align: center;
+    margin-bottom: 100px;
+    top: 40vh;
+    font-size: 2.5em;
+    transition: all 1s cubic-bezier(0.5, 0, 0.14, 1);
+    position: absolute;
+    /*margin-left: 50vw;*/
+}
+
+#selectedCountry {
+    color: white;
+    text-align: center;
+    margin-bottom: 100px;
+    top: 48vh;
+    opacity: 0.8;
+    font-size: 1.5em;
+    transition: all 1s cubic-bezier(0.5, 0, 0.14, 1);
+    position: absolute;
+}
+
+#title.loaded {
+    top: 5vh;
+}
+
+#selectedCountry.loaded {
+    top: 13vh;
+}
+
+#selectedCountry.hidden {
+    opacity: 0;
+}
+
+#title.done {
+    position: relative;
+}
+
+
+serversList {
+    opacity: 0;
+    transition: all 500ms ease;
+}
+
+serversList.loaded {
+    opacity: 1;
+}
+
+/*
+server {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+*/
+
+server {
+    background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	display: flex;
+	max-width: 100%;
+	margin: 20px;
+	overflow: hidden;
+	width: 700px;
+}
+
+
+serverInfo {
+    background-color: #2a265f;
+    color: #fff;
+    padding: 30px;
+    max-width: 250px;
+}
+
+country {
+    display: block;
+    font-size: 0.67em;
+    margin-block-start: 2.33em;
+    margin-block-end: 2.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+
+    opacity: 0.6;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+servername {    
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+	margin: 10px 0;
+}
+
+operator {
+    color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	opacity: 0.6;
+	margin-top: 30px;
+    text-decoration: none;
+}
+
+
+serverdetails {
+    padding: 30px;
+	position: relative;
+    width: 100%;
+    display: block;
+}
+
+serverSpeed {
+    position: absolute;
+	top: 30px;
+	right: 30px;
+	text-align: right;
+    width: 150px;
+    display: block;
+}
+
+speed, ping, separation {
+    font-size: 10px;
+	opacity: 0.6;
+	letter-spacing: 1px;
+}
+
+separation {
+    margin-right: 6px;
+    margin-left: 6px;
+    margin-top: -3.35px;
+    opacity: 0.6;
+}
+
+ip {
+    letter-spacing: 1px;
+    display: block;
+    font-size: 1.5em;
+    margin-top: -15px;
+    padding-bottom: 30px;
+    margin-block-end: 0.83em;
+    font-weight: bold;
+}
+
+numberofsessions {
+    opacity: 0.6;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    display: block;
+    font-size: 0.67em;
+    margin-block-start: 2.33em;
+    margin-block-end: 2.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+#downloadBtn {
+    background-color: #2a265f;
+	border: 0;
+	border-radius: 50px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 25px;
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+
+/**LOADER*/
+
+#loader{
+    display: block;
+    position: absolute;
+    border: 2.5px solid;
+    width: 40px;
+    height: 40px;
+    margin-top: 50px;
+    /*margin-left: 50vw;*/
+    border-radius: 50%;
+    opacity: 1;
+    top: 50vh;
+    border-color: orange transparent transparent;
+    animation: spin 2s linear infinite, hue_animation 4s linear infinite;
+    transition: all 1s cubic-bezier(0.5, 0, 0.14, 1);
+}
+
+#loader.hiddenLoader {
+    top: 15vh;
+    opacity: 0;
+}
+  
+@keyframes spin{
+    100%{
+        transform:rotate(360deg)
+    }
+  }
+@keyframes hue_animation{
+    100%{
+        filter:hue-rotate(360deg)
+    }
+}
+
+
+
+@media screen and (max-width: 725px) {
+    server {
+        max-width: 90%;
+        margin-left: 35px;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    server {
+        max-width: 80%;
+        margin-left: 80px;
+    }
+    #downloadBtn {
+        transform: scale(.9);
+    }
+}
+
+@media screen and (max-width: 660px) {
+    server {
+        transform: scale(0.9);
+        margin: 10px;
+        margin-left: 10vh;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    server {
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (max-width: 501px) {
+
+    #title {
+        font-size: 2em;
+    }
+    #selectedCountry {
+        font-size: 1.3em;
+    }
+
+    server {
+        transform: scale(0.8);
+        width: 490px;
+    }
+
+    servername {
+        font-size: 1em;
+    }
+    country {
+        font-size: 0.6em;
+    }
+    operator {
+        font-size: 10px;
+    }
+    serverspeed {
+        display: none;
+    }
+    #downloadBtn {
+        margin-right: 95px;
+    }
+}

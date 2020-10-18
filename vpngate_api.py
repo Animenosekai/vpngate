@@ -8,11 +8,14 @@ VPN Gate API URL:
 """
 
 # Imports
-import lifeeasy
+import requests
 
-def vpngate_api():
+def vpngate_api(removeData=[], onlyCountry=None, academicUse=False):
+    """
+    Returns API data
+    """
     # Downloading the data from VPNGate CSV API
-    vpngate_csv = lifeeasy.request('http://www.vpngate.net/api/iphone/').text
+    vpngate_csv = requests.get('http://www.vpngate.net/api/iphone/').text
 
     # Prepare the data
     vpngate_data_servers = vpngate_csv.split('\n')
@@ -38,4 +41,39 @@ def vpngate_api():
                     temp_data = {}
                     counter = 0
 
-    return results
+    country_temp = []
+
+    if onlyCountry is not None:
+        for server in results:
+            if server["CountryShort"] == onlyCountry or server["CountryLong"] == onlyCountry:
+                country_temp.append(server)
+    else:
+        country_temp = results
+
+    nonAcademicUse_temp = []
+    if not academicUse:
+        for server in country_temp:
+            if "academicuseonly" not in server["Operator"].replace(" ", "").lower():
+                nonAcademicUse_temp.append(server)
+    else:
+        nonAcademicUse_temp = country_temp
+    
+    final = []
+    for server in nonAcademicUse_temp:
+        temp = server
+        for element in removeData:
+            temp.pop(element)
+        final.append(temp)
+
+    return final
+
+
+def getOpenVPNConfig(serverIP):
+    """
+    Returns a tuple with the OpenVPN Config File (base64 encoded) and the country code.
+    """
+    data = vpngate_api(academicUse=True)
+    for server in data:
+        if server["IP"] == serverIP:
+            return server["OpenVPN_ConfigData_Base64"], server["CountryShort"]
+    return None
