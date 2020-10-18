@@ -10,7 +10,7 @@ window.onload = function(){
     
 
     //fetch("https://animenosekai.herokuapp.com/vpngate/api/servers")
-    fetch("http://127.0.0.1:4000/vpngate/api/servers" + window.location.search, {
+    fetch("https://animenosekai.herokuapp.com/vpngate/api/servers" + window.location.search, {
         "method": "GET",
         "headers": {
             "Anise-IgnoreBase64OpenVPN": true
@@ -109,5 +109,5 @@ window.onload = function(){
 }
 
 function downloadConfigFile(serverIP){
-    window.open("http://127.0.0.1:4000/vpngate/api/downloadConfig?serverIP=" + String(serverIP))
+    window.open("https://animenosekai.herokuapp.com/vpngate/api/downloadConfig?serverIP=" + String(serverIP))
 }
