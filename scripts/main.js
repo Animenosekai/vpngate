@@ -10,12 +10,7 @@ window.onload = function(){
     
 
     //fetch("https://animenosekai.herokuapp.com/vpngate/api/servers")
-    fetch("https://animenosekai.herokuapp.com/vpngate/api/servers" + window.location.search, {
-        "method": "GET",
-        "headers": {
-            "Anise-IgnoreBase64OpenVPN": true
-        }
-    })
+    fetch("https://animenosekai.herokuapp.com/vpngate/api/servers" + window.location.search)
     .then((resp) => resp.json()) // Transform the data into json
     .then(function(data) {
 
